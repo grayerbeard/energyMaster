@@ -1,3 +1,13 @@
+# Purpose of this Version
+
+This version seeks to customise this project for monitoring the power used in a Workshop that is normally nly in use two or three days a week.  The power feed is used for workshop machines and for the electric Fan Heaters.  The workshop is used by Whitchiurch Shropshire Men in Sheds.
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+From here on is the Readme file as written by "BruceHobbies"
+
 # energyMaster
 Energy monitoring for logging, detection of faults, and preventative maintenance monitoring.
 
