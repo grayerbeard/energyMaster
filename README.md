@@ -14,10 +14,9 @@ I purchased a split CT from Amazon see https://www.amazon.co.uk/gp/product/B07FS
 ## Raspberry Pi system
 
 I used my Rpi4 4GB in an Argon M2 Case From Pimorini see https://shop.pimoroni.com/products/argon-one-m-2-case-for-raspberry-pi-4
-   ... but many other R Pi versions should be OK as "BruceHobbies explains below.
+   ... but many other R Pi versions should be OK as "BruceHobbies" explains below.
 
-I put the CT in our Consumer unit and ran a two core cable from the CT to the PZEM which was in a nearby room.
-
+I put the CT in our Consumer unit and ran a two core cable from the CT to the PZEM which was in a nearby room, then wired the RS$% to the USB dongle.
 
 # Software Installation
 ## Step 1: Setup the Raspberry Pi Operating System.
@@ -63,14 +62,15 @@ If I plugged the converter into different USB sockets I got it appearing under d
 
 ## Step 3: Configure energyMaster software
 I did not need to add additional PZEM modules (see BruceHobbies version below about that)) so my configure commands wer as follows:, 
+This is editing lines in the "eneregyMaster.py" python file.  I left this as below for first run and the software worked OK without having to make any changes.
 
-    chanNames = ["WMIS Power"]
+   chanNames = ["Device1","Device2","Device3","Device4"]
     chanPorts = ["/dev/ttyUSB0", "/dev/ttyUSB1", "/dev/ttyUSB2", "/dev/ttyUSB3"]   # One entry per chanName[]
     chanAddrs = [0x01, 0x01, 0x01, 0x01]                                           # One entry per chanName[]
-    chanOnThresholds = [5, 20, 20, 20]                                 # Watts, with one entry per chanName[]
+    chanOnThresholds = [0.5, 0.5, 0.5, 0.5]                                 # Watts, with one entry per chanName[]
 
 
-To change the sample interval or logging interval modify these lines.
+To change the sample interval or logging interval modify these lines.  This also means 
 
     # Timing parameters
     tInterval = 0.5    # time interval in seconds between measuring current
@@ -131,7 +131,7 @@ Then click on “Turn on access (not recommended)” by moving the slider to ON.
 # Running The Program From A Terminal Window 
 When your first email is sent at program startup, Google will ask you to confirm that it is you. You will need to sign into the device email account that you created and go to the critical security email that Google sent you and confirm you originated the email before Google will allow emails to be sent from your Python program.
 
-Once you have created an account, start the energyMaster™ program.   Type:
+Once you have created an account, start the energyMaster™ program.   Type: this after changing to the energyMaster folder. ( cd energyMaster )
 
     python3 energyMaster.py
 
