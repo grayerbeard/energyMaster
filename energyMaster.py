@@ -4,12 +4,11 @@
 Copyright(C) 2021, BrucesHobbies
 All Rights Reserved
 
-AUTHOR: BrucesHobbies
-DATE: 03/23/2021
+AUTHOR: David Torrens 99% based on the code by BrucesHobbies
+DATE: 17/2/2022
 REVISION HISTORY
   DATE        AUTHOR          CHANGES
-  yyyy/mm/dd  --------------- -------------------------------------
-
+  17/2/2022     DT      Adapting for WMIS
 
 GENERAL INFO
   energyMaster is designed to monitor and log energy consumption from home devices. Enery is monitored
