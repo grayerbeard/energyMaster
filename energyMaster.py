@@ -119,13 +119,22 @@ tLog = 15          # time interval in minutes between logging energy measurement
 # If you change passwords, please delete emailCfg.json so that this program will again ask for the password.
 #
 
-statusMsgEnabled = 1                             # non zero enables sending of email / SMS text messages
-statusMsgHHMM    = [12, 0]                        # Status message time to send [hh, mm]
+##### statusMsgEnabled = 0
+statusMsgEnabled = 1						# non zero enables sending of email / SMS text messages
+##### statusMsgHHMM    = [12, 0]
+statusMsgHHMM    = [12, 0]                  # Status message time to send [hh, mm]
 
 alertMsgEnabled  = 1                              # non zero enables sending of email / SMS text messages
-runTimeAlert = [30*60] * len(chanNames)           # Run time to trigger email / SMS text - seconds
+#####runTimeAlert = [30*60] * len(chanNames)
+
+##### Set Short for Test
+runTimeAlert = [10] * len(chanNames)           # Run time to trigger email / SMS text - seconds
 ##minIntervalBtwEmails = [2*3600] * len(chanNames)  # Wait this long before sending another email - seconds
-minIntervalBtwEmails = [600] * len(chanNames)  # Wait this long before sending another email - seconds
+#####minIntervalBtwEmails = [600] * len(chanNames)  # Wait this long before sending another email - seconds
+
+##### Set Short for Test
+minIntervalBtwEmails = [60] * len(chanNames)    # Wait this long before sending another email - seconds
+
 
 # --- END USER CONFIG ---
 
