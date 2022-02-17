@@ -6,36 +6,25 @@ See BruceHobbies original for a detailed description of the set up.
 
 Here is the set up I am using which is an edited version of the original:
 
-# Required Hardware 
-As an Amazon Associate I earn a small commission from qualifying purchases. It does not in any way change the prices on Amazon. I appreciate your support, if you purchase using the links below.
+## PZEM Module and CT
 
-## PZEM Module (about $20 USD)
-For Alternating Current (AC) devices
-- One of the following AC power PZEM-016 modules - may have different shipping times
-  - [Amazon: PZEM-016](https://amzn.to/2QlplIX)
-  - [Amazon: PZEM-016](https://amzn.to/394y8VT)
-  - [Amazon: PZEM-016](https://amzn.to/2PhmK1M)
-  - [Amazon: PZEM-016](https://amzn.to/3lG36su)
+I purcheased a PZEM-016 from Amazon see https://www.amazon.co.uk/gp/product/B07G8W9MGW  but I did not like the non split CT so ..... 
+I purchased a split CT from Amazon see https://www.amazon.co.uk/gp/product/B07FSGRB4W
 
-For Direct Current (DC) devices
-- One of the following DC power PZEM-017 modules - may have different shipping times
-  - [Amazon: PZEM-017](https://amzn.to/315rXwv)
+## Raspberry Pi system
 
-2-conductor low voltage wire as needed (RS-485 connection from PZEM module to USB dongle)
+I used my Rpi4 4GB in an Argon M2 Case From Pimorini see https://shop.pimoroni.com/products/argon-one-m-2-case-for-raspberry-pi-4
+   ... but many other R Pi versions should be OK as "BruceHobbies explains below.
 
-## Raspberry Pi system (if you don’t already own one)
-- Raspberry Pi (any of the following)
-  - [RPI-Zero]( https://amzn.to/3ly0mM0)
-  - [RPI 3B+]( https://amzn.to/3lyPBJe)
-  - [RPI 4B]( https://amzn.to/2Vwulto)
-- Power adapter for your Raspberry Pi
-- Heatsinks (optional)
-- SD-Card
+I put the CT in our Consumer unit and ran a two core cable from the CT to the PZEM which was in a nearby room.
+
 
 # Software Installation
 ## Step 1: Setup the Raspberry Pi Operating System.
+
 Here are the instructions to install the Raspberry Pi Operating System.
 [Raspberry Software Install Procedure](https://www.raspberrypi.org/software/operating-systems/)
+I used the VPN and Dataplicity to allow me to work on the software remotely.
 
 Before continuing make sure your operating system has been updated with the latest updates.
 
@@ -46,7 +35,11 @@ Before continuing make sure your operating system has been updated with the late
 ## Step 2: Download energyMaster software
 To get a copy of the source files type in the following git command assuming you have already installed git:
 
-    git clone https://github.com/BrucesHobbies/energyMaster
+    git clone https://github.com/grayerbeard/energyMaster.git  /home/pi/energyMaster
+    
+That puts the software into the "energyMaster" folder and sets up the folder as a Git Repository.
+
+Alternativly (and recomended) Fork the software into your own repository before downloading.
 
 Download the prerequisite ModBus.
 
@@ -56,11 +49,22 @@ Verify PZEM module presence using the RPi command line (once attached by USB cab
 
     ls /dev/ttyUSB*    # Show USB devices
     lsusb -v           # Show USB devices with details
+    
+The last command gave a lot of data but there was one item that included this when the RS485 was plugged in to the bottom left USB port.
 
-## Step 3: Configure energyMaster software (optional)
-To add additional PZEM modules, add a name to the chanNames list in energyMaster.py. The example below is for four devices on separate USB dongles.
+    '.... Bus 001 Device 005: ID 1a86:7523 QinHeng Electronics CH340 serial converter
+    Couldn't open device, some information will be missing
+    Device Descriptor:
+      bLength                18
+      bDescriptorType         1
+ ...
 
-    chanNames = ["Device1","Device2","Device3","Device4"]
+If I plugged the converter into different USB sockets I got it appearing under different devices.  
+
+## Step 3: Configure energyMaster software
+I did not need to add additional PZEM modules (see BruceHobbies version below about that)) so my configure commands wer as follows:, 
+
+    chanNames = ["WMIS Power"]
     chanPorts = ["/dev/ttyUSB0", "/dev/ttyUSB1", "/dev/ttyUSB2", "/dev/ttyUSB3"]   # One entry per chanName[]
     chanAddrs = [0x01, 0x01, 0x01, 0x01]                                           # One entry per chanName[]
     chanOnThresholds = [5, 20, 20, 20]                                 # Watts, with one entry per chanName[]
