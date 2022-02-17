@@ -119,7 +119,7 @@ tLog = 15          # time interval in minutes between logging energy measurement
 # If you change passwords, please delete emailCfg.json so that this program will again ask for the password.
 #
 
-statusMsgEnabled = 0                              # non zero enables sending of email / SMS text messages
+statusMsgEnabled = 1                             # non zero enables sending of email / SMS text messages
 statusMsgHHMM    = [12, 0]                        # Status message time to send [hh, mm]
 
 alertMsgEnabled  = 1                              # non zero enables sending of email / SMS text messages
